@@ -12,13 +12,13 @@ public class UserMap {
         map.put(user2, new Object());
         map.forEach((key, value) -> System.out.println(key + " -> " + value));
 
-        int index1 = (user1.hashCode()^(user1.hashCode() >>> 16))&15;
-        int index11 = (user1.hashCode()^(user1.hashCode() >>> 16));
-        System.out.println(index1);
-        System.out.println("hash 1: " + index11);
-        int index2 = (user2.hashCode()^(user2.hashCode() >>> 16))&15;
-        int index22 = (user2.hashCode()^(user2.hashCode() >>> 16));
-        System.out.println(index2);
-        System.out.println("hash 2: " + index22);
+        int index1 = (user1.hashCode() ^ (user1.hashCode() >>> 16)) & 15;
+        int hash1 = (user1.hashCode() ^ (user1.hashCode() >>> 16));
+        System.out.println("user1 index: " + index1);
+        System.out.println("user1 hashCode: " + hash1);
+        int index2 = (user2.hashCode() ^ (user2.hashCode() >>> 16)) & 15;
+        int hash2 = (user2.hashCode() ^ (user2.hashCode() >>> 16));
+        System.out.println("user2 index: " + index2);
+        System.out.println("user2 hashCode: " + hash2);
     }
 }
