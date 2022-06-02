@@ -71,7 +71,10 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return index < count;
+                while (table[index] == null && index < capacity - 1) {
+                    index++;
+                }
+                return index <= capacity - 1;
             }
 
             @Override
@@ -85,16 +88,17 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private int hash(int hashCode) {
-        return hashCode() ^ (hashCode() >>> 16);
+        return hashCode ^ (hashCode >>> 16);
     }
 
     private int indexFor(int hash) {
-        return hash & (table.length - 1);
+        return hash & (capacity - 1);
     }
 
     private void expand() {
+        capacity *= 2;
         MapEntry<K, V>[] oldTable = table;
-        table = new MapEntry[capacity * 2];
+        table = new MapEntry[capacity];
         count = 0;
         for (MapEntry<K, V> mapEntry : oldTable) {
             if (mapEntry != null) {

@@ -3,6 +3,9 @@ package ru.job4j.map;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Iterator;
+
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
@@ -25,7 +28,7 @@ public class SimpleMapTest {
         assertNull(map.get("TV"));
     }
 
-/*    @Test
+    @Test
     public void whenMoreThan8ThenExpand() {
         Map<String, Integer> map = new SimpleMap<>();
         map.put("zero", 0);
@@ -38,6 +41,22 @@ public class SimpleMapTest {
         map.put("seven", 7);
         map.put("eight", 8);
         assertThat(8, is(map.get("eight")));
-    }*/
+    }
+
+    @Test
+    public void whenIterator() {
+        Map<String, Integer> map = new SimpleMap<>();
+        map.put("zero", 0);
+        map.put("one", 1);
+        map.put("two", 2);
+        Iterator<String> iterator = map.iterator();
+        Assert.assertTrue(iterator.hasNext());
+        assertThat("zero", is(iterator.next()));
+        Assert.assertTrue(iterator.hasNext());
+        assertThat("two", is(iterator.next()));
+        Assert.assertTrue(iterator.hasNext());
+        assertThat("one", is(iterator.next()));
+
+    }
 
 }
