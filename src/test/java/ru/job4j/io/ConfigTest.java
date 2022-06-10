@@ -1,5 +1,6 @@
 package ru.job4j.io;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -43,6 +44,22 @@ public class ConfigTest {
         Config config = new Config(path);
         config.load();
         config.value("hibernate.dialect");
+    }
+
+    @Test
+    public void whenTwoAssignmentOperators() {
+        String path = "./data/two_assignments.properties";
+        Config config = new Config(path);
+        config.load();
+        assertThat(config.value("key"), is("value=1"));
+    }
+
+    @Test
+    public void whenMethodReadsBetweenBlankLines() {
+        String path = "./data/blank_lines_in_between.properties";
+        Config config = new Config(path);
+        config.load();
+        assertThat(config.value("key"), is("value"));
     }
 
 }

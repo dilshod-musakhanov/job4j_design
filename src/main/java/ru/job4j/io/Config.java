@@ -4,14 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Config {
     private final String path;
-    private Map<String, String> values = new HashMap<String, String>();
+    private final Map<String, String> values = new HashMap<String, String>();
 
     public Config(final String path) {
         this.path = path;
@@ -19,9 +17,12 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            values = read.lines().
-                    filter(line -> !line.startsWith("#") || line.startsWith("="))
-                    .map(line -> line.split("="))
+            List<String> tempList = read.lines()
+                    .filter(l -> !l.isBlank())
+                    .collect(Collectors.toList());
+            Map<String, String> tempMap = tempList.stream()
+                    .filter(line -> !line.startsWith("#"))
+                    .map(line -> line.split("=", 2))
                     .filter(lines -> {
                         if (lines.length < 2 || lines[0].isEmpty() || lines[1].isEmpty()) {
                             throw new IllegalArgumentException();
@@ -29,6 +30,7 @@ public class Config {
                         return true;
                     })
                     .collect(Collectors.toMap(k -> k[0], v -> v[1]));
+            values.putAll(tempMap);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -59,5 +61,8 @@ public class Config {
 
     public static void main(String[] args) {
         System.out.println(new Config("app.properties"));
+        Config config = new Config("app.properties");
+        config.load();
+
     }
 }
