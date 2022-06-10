@@ -17,22 +17,19 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            List<String> tempList = read.lines()
-                    .filter(l -> !l.isBlank())
-                    .collect(Collectors.toList());
-            Map<String, String> tempMap = tempList.stream()
-                    .filter(line -> !line.startsWith("#"))
+            Map<String, String> tempMap = read.lines()
+                    .filter(line -> !line.isBlank() && !line.startsWith("#"))
                     .map(line -> line.split("=", 2))
                     .filter(lines -> {
                         if (lines.length < 2 || lines[0].isEmpty() || lines[1].isEmpty()) {
-                            throw new IllegalArgumentException();
+                            throw new IllegalArgumentException(
+                                    "Invalid data. Please make sure that the data is accurate and valid"
+                            );
                         }
                         return true;
                     })
                     .collect(Collectors.toMap(k -> k[0], v -> v[1]));
             values.putAll(tempMap);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
