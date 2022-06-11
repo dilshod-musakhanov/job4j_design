@@ -15,11 +15,11 @@ public class Analizy {
                 String[] st;
                 st = line.split(" ");
 
-                if ((st[0].equals("400") || st[0].equals("500")) && serviceDown) {
+                if (("400".equals(st[0]) || "500".equals(st[0])) && serviceDown) {
                     openTime = st[1];
                     serviceDown = false;
                 }
-                if ((st[0].equals("200") || st[0].equals("300")) && !serviceDown) {
+                if (("200".equals(st[0]) || "300".equals(st[0])) && !serviceDown) {
                     closTime = st[1];
                     serviceDown = true;
                 }
