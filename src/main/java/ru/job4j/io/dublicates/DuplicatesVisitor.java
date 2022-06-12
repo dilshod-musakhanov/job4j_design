@@ -10,7 +10,7 @@ import java.util.*;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
-    HashMap<FileProperty, List<Path>> map = new HashMap<>();
+    private final HashMap<FileProperty, List<Path>> map = new HashMap<>();
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
