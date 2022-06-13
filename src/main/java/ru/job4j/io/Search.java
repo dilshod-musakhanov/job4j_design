@@ -9,8 +9,25 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get("C:\\projects\\job4j_design");
-        search(start, f -> f.toFile().getName().endsWith(".txt")).forEach(System.out::println);
+        Search s = new Search();
+        if (s.validateArgs(args)) {
+            Path start = Paths.get(args[0]);
+            search(start, f -> f.toFile().getName().endsWith(args[1])).forEach(System.out::println);
+        }
+    }
+
+    public boolean validateArgs(String[] args) {
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Please provide both parameters");
+        }
+        if (args[0] == null) {
+            throw new IllegalArgumentException("Please provide a valid directory");
+        }
+        if (args[1].startsWith(".")) {
+            throw new IllegalArgumentException("Please provide a valid file extension");
+        } else {
+            return true;
+        }
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) throws IOException {
