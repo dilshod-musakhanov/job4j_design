@@ -10,9 +10,8 @@ public class ArgsName {
     public String get(String key) {
         if (null == values.get(key)) {
             throw new IllegalArgumentException("Key is not found");
-        } else {
-            return values.get(key);
         }
+        return values.get(key);
     }
 
     private void parse(String[] args) {
@@ -32,6 +31,9 @@ public class ArgsName {
     }
 
     public static ArgsName of(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Empty arguments passed");
+        }
         ArgsName names = new ArgsName();
         names.parse(args);
         return names;

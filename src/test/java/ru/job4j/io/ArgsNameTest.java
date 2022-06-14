@@ -38,7 +38,7 @@ public class ArgsNameTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void whenEmptyArguments() {
-        ArgsName jvm = ArgsName.of(new String[] {" "});
+        ArgsName jvm = ArgsName.of(new String[] {});
     }
 
     @Test(expected = IllegalArgumentException.class)
