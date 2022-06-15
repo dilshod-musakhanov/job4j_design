@@ -15,18 +15,25 @@ public class ArgsName {
     }
 
     private void parse(String[] args) {
+        validateArgs(args);
         for (String a : args) {
-            if (!a.contains("=")) {
-                throw new IllegalArgumentException("Invalid format of parameters");
-            }
-            String[] temp = a.split("=", 2);
-            if (temp[0].startsWith("--")
-                || temp[0].substring(1).isBlank()
-                || temp[1].isBlank()
+            args = a.split("=", 2);
+            values.put(args[0].substring(1), args[1]);
+        }
+    }
+
+    private void validateArgs(String[]args) throws IllegalArgumentException {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Empty arguments passed");
+        }
+        for (String arg : args) {
+            if (arg.startsWith("--") || !arg.contains("=")
+                    || !arg.startsWith("-")
+                    || arg.substring(1, arg.indexOf("=")).length() == 0
+                    || arg.substring(arg.indexOf("=") + 1).length() == 0
             ) {
                 throw new IllegalArgumentException("Invalid format of parameters");
             }
-            values.put(temp[0].substring(1), temp[1]);
         }
     }
 
