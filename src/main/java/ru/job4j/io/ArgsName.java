@@ -27,7 +27,7 @@ public class ArgsName {
             throw new IllegalArgumentException("Empty arguments passed");
         }
         for (String arg : args) {
-            if (arg.startsWith("--") || !arg.contains("=")
+            if (!arg.contains("=")
                     || !arg.startsWith("-")
                     || arg.substring(1, arg.indexOf("=")).length() == 0
                     || arg.substring(arg.indexOf("=") + 1).length() == 0
