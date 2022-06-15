@@ -34,20 +34,20 @@ public class Zip {
     }
 
     public static ArgsName validateArgs(String[] args) {
+        if (args.length != 3) {
+            throw new IllegalArgumentException("Provide all required arguments(directory, exclude and output)");
+        }
         ArgsName argsName = ArgsName.of(args);
         String directory = argsName.get("d");
         String exclude = argsName.get("e");
         String output = argsName.get("o");
-        if (args.length != 3) {
-            throw new IllegalArgumentException("Provide all required arguments(directory, exclude and output)");
-        }
         if (!Path.of(directory).toFile().isDirectory()) {
             throw new IllegalArgumentException("Provide valid directory");
         }
-        if (null == exclude) {
+        if (!exclude.startsWith(".")) {
             throw new IllegalArgumentException("Provide valid extension for excluded file");
         }
-        if (null == output) {
+        if (!output.contains(".zip")) {
             throw new IllegalArgumentException("Provide valid extension for output file");
         }
         return argsName;
