@@ -55,7 +55,9 @@ public class Zip {
 
     public static void main(String[] args) throws IOException {
         ArgsName argsName = validateArgs(args);
-        List<Path> sources = Search.search(Paths.get(argsName.get("d")), file -> !file.toFile().getName().endsWith(argsName.get("e")));
+        List<Path> sources = Search.search(
+                Paths.get(argsName.get("d")),
+                file -> !file.toFile().getName().endsWith(argsName.get("e")));
         Zip zip = new Zip();
         zip.packFiles(sources, new File(argsName.get("o")));
 /*        Zip zipSingle = new Zip();
