@@ -1,0 +1,43 @@
+
+User: Hello
+Bot: У тебя — своя сказка, а у меня — своя
+User: Что?
+Bot: Это жизнЬ такая!!!
+User: Как найти работу?
+Bot: Please enter CONTINUE to go ahead
+User: стоп
+User: продолжить
+Bot: Please leave your feedback
+User: тупой бот
+Bot: Ты заходи, если что!
+User: закончить
+### Chat ended on 19-06-2022 17:49:27
+
+User: закончить
+### Chat ended on 19-06-2022 17:53:10
+
+User: Можно вопрос?
+Bot: У тебя — своя сказка, а у меня — своя
+User: Do you understand what I am typing?
+Bot: Bot got crazy today
+User: стоп
+User: стоп
+User: продолжить
+Bot: Ты заходи, если что!
+User: иди нах
+Bot: Я тучка, тучка, тучка, я вовсе не медведь
+User: стоп
+User: продолжить
+Bot: Не правильно ты, дядя Федор, бутерброд ешь…
+User: закончить
+### Chat ended on 19-06-2022 17:53:33
+
+User: empty
+Bot: Меня зовут Бот Скороход
+User: акончить
+Bot: Отдохнул — во! Сметаны — во! Рыбы — во!
+User: закончить
+### Chat ended on 19-06-2022 17:59:16
+
+
+
