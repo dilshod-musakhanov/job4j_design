@@ -29,6 +29,8 @@ public class ConsoleChat {
         String condition = CONTINUE;
         String userName = "User:";
         String bot = "Bot:";
+        Random randomBotText = new Random();
+        List<String> botTextList = readPhrases();
         while (!OUT.equals(condition)) {
             Scanner user = new Scanner(System.in);
             String userText = user.nextLine();
@@ -48,8 +50,7 @@ public class ConsoleChat {
                     } else {
                         condition = CONTINUE;
                         chat.add(userName + " " + userText);
-                        Random randomBotText = new Random();
-                        String botText = readPhrases().get(randomBotText.nextInt(readPhrases().size()));
+                        String botText = botTextList.get(randomBotText.nextInt(botTextList.size()));
                         System.out.println(botText);
                         chat.add(bot + " " + botText);
                     }
