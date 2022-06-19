@@ -1,6 +1,7 @@
 package ru.job4j.console;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class ConsoleChat {
 
     private List<String> readPhrases() {
         List<String> botTextList = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(botAnswers))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(botAnswers, StandardCharsets.UTF_8))) {
             br.lines().forEach(botTextList::add);
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,7 +70,7 @@ public class ConsoleChat {
     }
 
     private void saveLog(List<String> log) {
-        try (PrintWriter pr = new PrintWriter(new FileWriter(path, true))) {
+        try (PrintWriter pr = new PrintWriter(new FileWriter(path, StandardCharsets.UTF_8, true))) {
             log.forEach(pr::println);
             pr.println("### Chat ended on " + time);
             pr.println();
