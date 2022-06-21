@@ -61,12 +61,6 @@ public class CSVReader {
                 printWriter.println(strData);
             }
 
-            //TODO remove
-            filterElements.forEach(System.out::println);
-            System.out.println("Titles: \n" + Arrays.toString(titles));
-            System.out.println(filterElements.contains(titles[0]));
-            System.out.println(filterElements.contains(titles[1]));
-
         } catch (IOException e) {
             e.printStackTrace();
         }
