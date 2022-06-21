@@ -1,5 +1,4 @@
-age
-30
-29
-35
-33
+department;manager
+Accounts;Bob
+IT;Alice
+Retail;Ivan
