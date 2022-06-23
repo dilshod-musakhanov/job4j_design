@@ -1,11 +1,9 @@
 package ru.job4j.io;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 public class EchoServer {
     public static void main(String[] args) throws IOException {
@@ -18,15 +16,15 @@ public class EchoServer {
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     String word = in.readLine();
                     if (word.contains("Bye")) {
-                        server.isClosed();
+                        server.close();
                         System.out.println("server is closed now");
                     } else {
                         System.out.println(word);
                         for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
                             System.out.println(str);
                         }
-                        out.flush();
                     }
+                    out.flush();
                 }
             }
         }
