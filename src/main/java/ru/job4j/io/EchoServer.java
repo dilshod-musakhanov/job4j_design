@@ -10,21 +10,24 @@ public class EchoServer {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
                 Socket socket = server.accept();
-                try (OutputStream out = socket.getOutputStream();
+                try (OutputStreamWriter SocketWriter = (new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
                      BufferedReader in = new BufferedReader(
-                             new InputStreamReader(socket.getInputStream()))) {
-                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                             new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8))) {
                     String word = in.readLine();
-                    if (word.contains("Bye")) {
-                        server.close();
-                        System.out.println("server is closed now");
-                    } else {
-                        System.out.println(word);
-                        for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
-                            System.out.println(str);
-                        }
+                    if (word.contains("Hello")) {
+                        SocketWriter.write("HTTP/1.1 200 OK\r\n\r\n");
+                        SocketWriter.write("Hello, dear friend! Привет дружище!");
                     }
-                    out.flush();
+                    if (word.contains("Exit")) {
+                        SocketWriter.write("HTTP/1.1 200 OK\r\n\r\n");
+                        SocketWriter.write("Server closed. Завершить работу сервера");
+                        server.close();
+                    }
+                    if (!word.contains("Hello") && !word.contains("Exit")) {
+                        SocketWriter.write("HTTP/1.1 200 OK\r\n\r\n");
+                        SocketWriter.write("What???");
+                    }
+                    SocketWriter.flush();
                 }
             }
         }
