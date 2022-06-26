@@ -10,14 +10,18 @@ public class UsageLog4j {
         String name = "Petr Arsantev";
         int age = 33;
         LOG.debug("User info name : {}, age : {}", name, age);
-        String ads = "Selling My Car";
-        String model = "BWM X6";
-        double mileage = 12.000;
-        long cost = 10000;
-        boolean isUsed = true;
-        boolean hadAccident = false;
-        int year = 2010;
-        LOG.debug("User advertisement : {}, Model : {}, Year : {}, Price $USD : {}",  ads, model, year, cost);
-        LOG.debug("More details : Mileage : {}, Used : {}, Injured in accident : {}", mileage, isUsed, hadAccident);
+        byte b = 1;
+        short s = 2;
+        int i = 3;
+        long l = 4L;
+        float f = 5f;
+        double d = 6d;
+        boolean bool = true;
+        char ch = 'c';
+        LOG.debug("The eight primitives defined in Java are :\n "
+                + "byte : {}, short : {}, int : {}, long : {}, "
+                + "float : {}, double : {}, boolean : {}, char : {}",
+                b, s, i, l, f, d, bool, ch
+        );
     }
 }
