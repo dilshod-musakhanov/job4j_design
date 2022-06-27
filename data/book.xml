@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<book name="Javanist" year="2020" available = "true">
+    <library libraryname= "New York Central Library"/>
+    <authors>
+        <author>Jan Javan</author>
+        <author>Javani Van</author>
+        <author>Ja Vanna</author>
+    </authors>
+</book>
