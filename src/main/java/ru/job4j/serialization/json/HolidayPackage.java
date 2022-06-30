@@ -21,6 +21,30 @@ public class HolidayPackage {
         this.discount = discount;
     }
 
+    public boolean isOnSale() {
+        return onSale;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public int getNights() {
+        return nights;
+    }
+
+    public String[] getInclusions() {
+        return inclusions;
+    }
+
+    public String getCost() {
+        return cost;
+    }
+
+    public SpecialOffer getDiscount() {
+        return discount;
+    }
+
     @Override
     public String toString() {
         return "HolidayPackage{"

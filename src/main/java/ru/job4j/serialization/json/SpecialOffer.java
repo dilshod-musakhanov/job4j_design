@@ -7,6 +7,10 @@ public class SpecialOffer {
         this.discount = discount;
     }
 
+    public String getDiscount() {
+        return discount;
+    }
+
     @Override
     public String toString() {
         return "SpecialOffer{"
