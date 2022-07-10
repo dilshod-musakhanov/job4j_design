@@ -23,5 +23,6 @@ public class UsageLog4j {
                 + "float : {}, double : {}, boolean : {}, char : {}",
                 b, s, i, l, f, d, bool, ch
         );
+        LOG.error("This error has to be saved in error.txt");
     }
 }
