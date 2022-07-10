@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -64,6 +65,13 @@ public class CSVReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(target))) {
+            br.lines().forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) throws Exception {

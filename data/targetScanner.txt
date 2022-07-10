@@ -1,4 +1,4 @@
-department;manager
-Accounts;Bob
-IT;Alice
-Retail;Ivan
+department;staff
+Accounts;30
+IT;20
+Retail;10
