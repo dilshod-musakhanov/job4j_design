@@ -1,2 +1,7 @@
-
-2022-07-10 08:21:09,123 ERROR ru.job4j.io.UsageLog4j:main:26 - This error has to be saved in error.txt
+2022-07-12 03:08:59,288 ERROR ru.job4j.filesearch.ArgsValidator:argsValidatorOf:82 - Empty arguments passed
+2022-07-12 03:11:18,408 ERROR ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:67 - Invalid type passed: mask
+2022-07-12 03:12:08,188 ERROR ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:67 - Invalid type passed: mask
+2022-07-12 03:13:24,191 ERROR ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:48 - Directory is not valid
+2022-07-12 03:16:11,002 ERROR ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:70 - Invalid type passed: nae
+2022-07-12 03:16:34,204 ERROR ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:56 - Target file does not exist
+2022-07-12 03:17:18,405 ERROR ru.job4j.filesearch.ArgsValidator:validateAllArgs:28 - Invalid format of parameters

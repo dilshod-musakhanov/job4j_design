@@ -89,10 +89,10 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-              <finalName>csvReaderTest2</finalName>
+              <finalName>FileSearcher</finalName>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>ru.job4j.io.CSVReader</mainClass>
+                  <mainClass>ru.job4j.filesearch.FindingFile</mainClass>
                 </transformer>
               </transformers>
             </configuration>

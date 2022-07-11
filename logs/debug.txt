@@ -1,4 +1,29 @@
-2022-07-10 08:21:09,120 DEBUG ru.job4j.io.UsageLog4j:main:12 - User info name : Petr Arsantev, age : 33
-2022-07-10 08:21:09,123 DEBUG ru.job4j.io.UsageLog4j:main:21 - The eight primitives defined in Java are :
- byte : 1, short : 2, int : 3, long : 4, float : 5.0, double : 6.0, boolean : true, char : c
-2022-07-10 08:21:09,123 ERROR ru.job4j.io.UsageLog4j:main:26 - This error has to be saved in error.txt
+2022-07-12 03:08:59,288 ERROR ru.job4j.filesearch.ArgsValidator:argsValidatorOf:82 - Empty arguments passed
+2022-07-12 03:11:18,406 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:63 - Type passed: mask
+2022-07-12 03:11:18,408 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:65 - Type passed: mask
+2022-07-12 03:11:18,408 ERROR ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:67 - Invalid type passed: mask
+2022-07-12 03:12:08,185 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:63 - Type passed: mask
+2022-07-12 03:12:08,188 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:65 - Type passed: mask
+2022-07-12 03:12:08,188 ERROR ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:67 - Invalid type passed: mask
+2022-07-12 03:13:08,387 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
+2022-07-12 03:13:24,191 ERROR ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:48 - Directory is not valid
+2022-07-12 03:13:50,200 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
+2022-07-12 03:15:13,651 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:61 - Type passed: name
+2022-07-12 03:15:13,715 DEBUG ru.job4j.filesearch.FindingFile:writeSearchedFile:62 - No file found as per passed argument: log.tx
+2022-07-12 03:16:11,002 ERROR ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:70 - Invalid type passed: nae
+2022-07-12 03:16:34,204 ERROR ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:56 - Target file does not exist
+2022-07-12 03:17:18,405 ERROR ru.job4j.filesearch.ArgsValidator:validateAllArgs:28 - Invalid format of parameters
+2022-07-12 03:17:40,864 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:61 - Type passed: name
+2022-07-12 03:23:33,980 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
+2022-07-12 03:23:34,056 DEBUG ru.job4j.filesearch.FindingFile:writeSearchedFile:62 - No file found as per passed argument: l.txt
+2022-07-12 03:23:52,174 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
+2022-07-12 03:37:51,372 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
+2022-07-12 03:38:18,387 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
+2022-07-12 03:38:18,433 DEBUG ru.job4j.filesearch.FindingFile:searchBy:51 - No file found as per passed argument: lol?.txt
+2022-07-12 03:39:56,596 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
+2022-07-12 03:39:56,665 DEBUG ru.job4j.filesearch.FindingFile:searchBy:51 - No file found as per passed argument: lol?.txt
+2022-07-12 03:40:20,102 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
+2022-07-12 03:42:49,025 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
+2022-07-12 03:45:01,620 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
+2022-07-12 03:45:01,689 DEBUG ru.job4j.filesearch.FindingFile:writeSearchedFile:65 - No file found as per passed argument: lokg.txt
+2022-07-12 03:46:29,154 DEBUG ru.job4j.filesearch.ArgsValidator:validateRootAndTarget:64 - Type passed: mask
