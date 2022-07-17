@@ -48,6 +48,12 @@ from employees e
 left join departments d
 on e.department_id = d.id;
 
+select d.name
+from departments d
+left join employees e
+on e.department_id = d.id
+where e.name is null;
+
 create table teens(
     id serial primary key,
     name varchar(30),
