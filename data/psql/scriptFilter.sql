@@ -48,11 +48,15 @@ values ('chocolate icecream', date '2022-07-19', '3.00', '4');
 insert into product(name, expired_date, price, type_id)
 values ('vanila icecream', date '2022-07-19', '2.50', '4');
 
-select * from product where type_id = '1';
+select p.name
+from product p
+join type t
+on p.type_id = t.id
+where t.name = 'cheese';
 
 select * from product where name like '%icecream';
 
-select * from product where expired_date < '2022-07-17';
+select * from product where expired_date < current_date;
 
 select name from product where price = (select max(price) from product);
 
@@ -62,9 +66,13 @@ join product p
 on p.type_id = t.id
 group by t.name;
 
-select * from product
-where type_id = '1'
-or type_id = '2';
+select p.name "Product name", t.name "Type"
+from product p
+join type t
+on p.type_id = t.id
+where t.name = 'cheese'
+or t.name = 'milk'
+order by t.name;
 
 select t.name, count(p.type_id)
 from type t
@@ -78,3 +86,6 @@ from product p
 join type t
 on p.type_id = t.id
 order by p.name asc;
+
+
+
