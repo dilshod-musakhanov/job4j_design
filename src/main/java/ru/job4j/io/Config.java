@@ -60,6 +60,5 @@ public class Config {
         System.out.println(new Config("app.properties"));
         Config config = new Config("app.properties");
         config.load();
-
     }
 }
