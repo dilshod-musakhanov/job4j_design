@@ -26,6 +26,9 @@ public class ImportDB {
             for (String line = rd.readLine(); line != null; line = rd.readLine()) {
                 String[] st;
                 st = line.split(";");
+                if (st.length != 2 || st[0].isEmpty() || st[1].isEmpty()) {
+                    throw new IllegalArgumentException("Incomplete data or not matching to format:  name;email;");
+                }
                 users.add(new User(st[0], st[1]));
             }
         }
