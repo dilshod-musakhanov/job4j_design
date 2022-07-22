@@ -52,14 +52,12 @@ public class TableEditor implements AutoCloseable {
 
     private void createTable(String tableName) throws Exception {
         String sql = String.format(
-                "create table if not exists %s (%s, %s);",
+                "create table if not exists %s (%s);",
                 tableName,
-                "id serial primary key",
-                "name text"
+                "id serial primary key"
         );
         getStatement(sql);
         System.out.println(getTableScheme(connection, tableName));
-        close();
     }
 
     public void dropTable(String tableName) throws Exception {
@@ -68,7 +66,6 @@ public class TableEditor implements AutoCloseable {
                 tableName
         );
         getStatement(sql);
-        close();
     }
 
     public void addColumn(String tableName, String columnName, String type) throws Exception {
@@ -78,7 +75,6 @@ public class TableEditor implements AutoCloseable {
         );
         getStatement(sql);
         System.out.println(getTableScheme(connection, tableName));
-        close();
     }
 
     public void dropColumn(String tableName, String columnName) throws Exception {
@@ -88,7 +84,6 @@ public class TableEditor implements AutoCloseable {
         );
         getStatement(sql);
         System.out.println(getTableScheme(connection, tableName));
-        close();
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws Exception {
@@ -98,7 +93,6 @@ public class TableEditor implements AutoCloseable {
         );
         getStatement(sql);
         System.out.println(getTableScheme(connection, tableName));
-        close();
     }
 
     public static String getTableScheme(Connection connection, String tableName) throws Exception {
@@ -131,12 +125,13 @@ public class TableEditor implements AutoCloseable {
         Properties config = new Properties();
         try (InputStream in = StatementDemo.class.getClassLoader().getResourceAsStream("app.properties")) {
             config.load(in);
-            TableEditor tableEditor = new TableEditor(config);
-            tableEditor.createTable("Task");
-            tableEditor.addColumn("Task", "completed", "boolean");
-            tableEditor.renameColumn("Task", "completed", "assigned");
-            tableEditor.dropColumn("Task", "assigned");
-            tableEditor.dropTable("Task");
+            try (TableEditor tableEditor = new TableEditor(config)) {
+                tableEditor.createTable("Task");
+                tableEditor.addColumn("Task", "completed", "boolean");
+                tableEditor.renameColumn("Task", "completed", "assigned");
+                tableEditor.dropColumn("Task", "assigned");
+                tableEditor.dropTable("Task");
+            }
         } catch (Exception e) {
             LOG.error("Property file is not valid or execution failed", e);
         }
