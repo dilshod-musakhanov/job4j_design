@@ -1,3 +1,211 @@
+-XX:+UseParallelGC -Xmx12m -Xms12m
+
+С начало старта приложения до старта создания массива произошло 9 малых сборок.
+Продолжительность: 10 cекунд
+В начале used heap был 5,935.320 б
+Во время сборок used heap мах доходил до 8,043.800 б
+
+[0.008s][info][gc] Using Parallel
+[1.123s][info][gc] GC(0) Pause Young (Allocation Failure) 3M->1M(11M) 2.369ms
+[3.641s][info][gc] GC(1) Pause Young (Allocation Failure) 4M->2M(11M) 1.893ms
+[3.693s][info][gc] GC(2) Pause Young (Allocation Failure) 5M->3M(11M) 1.159ms
+[3.728s][info][gc] GC(3) Pause Young (Allocation Failure) 6M->4M(11M) 2.142ms
+[3.747s][info][gc] GC(4) Pause Young (Allocation Failure) 7M->4M(11M) 1.344ms
+[4.092s][info][gc] GC(5) Pause Young (Allocation Failure) 7M->5M(10M) 2.599ms
+[4.164s][info][gc] GC(6) Pause Young (Allocation Failure) 7M->5M(11M) 1.982ms
+[9.535s][info][gc] GC(7) Pause Young (Allocation Failure) 7M->5M(11M) 0.985ms
+
+
+С момента создания массива до старта Bubble Sort произошло 2 малых и 1 большая сборка.
+Продолжительность: 15 cекунд
+Во время сборок used heap мах доходил до 9,137.136 б
+
+[17.202s][info][gc] GC(8) Pause Young (Allocation Failure) 7M->6M(11M) 3.082ms
+[25.203s][info][gc] GC(9) Pause Young (Allocation Failure) 8M->7M(11M) 0.940ms
+[25.215s][info][gc] GC(10) Pause Full (Ergonomics) 7M->5M(11M) 11.906ms
+
+
+С момента Bubble Sort до старта Insert Sort произошло 6 малых сборок.
+Продолжительность Bubble Sort: 1 мин 36 cекунд
+Во время сборок used heap мах доходил до 7,960.304 б
+
+[42.220s][info][gc] GC(11) Pause Young (Allocation Failure) 7M->5M(11M) 0.715ms
+[59.203s][info][gc] GC(12) Pause Young (Allocation Failure) 7M->5M(11M) 0.248ms
+[76.252s][info][gc] GC(13) Pause Young (Allocation Failure) 7M->5M(11M) 0.486ms
+[93.264s][info][gc] GC(14) Pause Young (Allocation Failure) 7M->5M(11M) 0.384ms
+[110.277s][info][gc] GC(15) Pause Young (Allocation Failure) 7M->5M(11M) 0.370ms
+[124.120s][info][gc] GC(16) Pause Young (Allocation Failure) 7M->5M(11M) 0.424ms
+
+
+С момента Insert Sort до старта Merge Sort произошло 16 малых и 1 большая сборка.
+Продолжительность Insert Sort: 7 cекунд
+Во время сборок used heap мах доходил до 7,827.584 б
+
+[144.068s][info][gc] GC(18) Pause Young (Allocation Failure) 7M->5M(11M) 0.345ms
+[144.071s][info][gc] GC(19) Pause Young (Allocation Failure) 7M->6M(11M) 0.451ms
+[144.075s][info][gc] GC(20) Pause Young (Allocation Failure) 8M->6M(11M) 0.408ms
+[144.084s][info][gc] GC(21) Pause Full (Ergonomics) 6M->5M(11M) 8.527ms
+[144.094s][info][gc] GC(22) Pause Young (Allocation Failure) 7M->5M(11M) 0.280ms
+[144.103s][info][gc] GC(23) Pause Young (Allocation Failure) 7M->5M(11M) 0.280ms
+[144.105s][info][gc] GC(24) Pause Young (Allocation Failure) 7M->6M(11M) 0.529ms
+[144.108s][info][gc] GC(25) Pause Young (Allocation Failure) 8M->6M(11M) 0.361ms
+[144.111s][info][gc] GC(26) Pause Young (Allocation Failure) 7M->6M(11M) 0.321ms
+[144.113s][info][gc] GC(27) Pause Young (Allocation Failure) 8M->6M(11M) 0.306ms
+[144.115s][info][gc] GC(28) Pause Young (Allocation Failure) 8M->6M(11M) 0.353ms
+[144.118s][info][gc] GC(29) Pause Young (Allocation Failure) 8M->6M(11M) 0.263ms
+[144.120s][info][gc] GC(30) Pause Young (Allocation Failure) 8M->6M(11M) 0.270ms
+[144.122s][info][gc] GC(31) Pause Young (Allocation Failure) 8M->6M(11M) 0.239ms
+[144.125s][info][gc] GC(32) Pause Young (Allocation Failure) 8M->6M(11M) 0.267ms
+[144.127s][info][gc] GC(33) Pause Young (Allocation Failure) 8M->7M(11M) 0.301ms
+
+
+С момента Merge Sort до завершения программы произошло 4 малых сборок.
+Продолжительность Insert Sort: 2 cекунд
+Во время сборок used heap мах доходил до 9,447.664 б
+
+[148.247s][info][gc] GC(34) Pause Young (Allocation Failure) 9M->7M(11M) 0.450ms
+[165.319s][info][gc] GC(35) Pause Young (Allocation Failure) 9M->7M(11M) 0.522ms
+[183.333s][info][gc] GC(36) Pause Young (Allocation Failure) 9M->7M(11M) 0.913ms
+[201.345s][info][gc] GC(37) Pause Young (Allocation Failure) 9M->7M(11M) 0.394ms
+
+
+
+
+-XX:+UseG1GC -Xmx12m -Xms12m -Xlog:gc:logG1GC.txt
+
+С начало старта приложения до старта создания массива не было сборок.
+Продолжительность: 10 cекунд
+В начале used heap был 5,949.000 б
+В промежутке used heap мах доходил до 6,113.800 б
+[0.013s][info][gc] Using G1
+
+С момента создания массива до старта Bubble Sort произошло 22 сборки.
+Продолжительность: 10 cекунд
+Во время сборок used heap мах доходил до 7,162.376 б
+
+[13.853s][info][gc] GC(0) Pause Young (Normal) (G1 Evacuation Pause) 5M->3M(12M) 4.422ms
+[13.885s][info][gc] GC(1) Pause Young (Normal) (G1 Evacuation Pause) 4M->3M(12M) 2.914ms
+[13.910s][info][gc] GC(2) Pause Young (Normal) (G1 Evacuation Pause) 4M->3M(12M) 1.639ms
+[13.939s][info][gc] GC(3) Pause Young (Normal) (G1 Evacuation Pause) 4M->3M(12M) 1.434ms
+[14.009s][info][gc] GC(4) Pause Young (Normal) (G1 Evacuation Pause) 5M->4M(12M) 1.585ms
+[14.044s][info][gc] GC(5) Pause Young (Normal) (G1 Evacuation Pause) 6M->4M(12M) 2.966ms
+[14.072s][info][gc] GC(6) Pause Young (Normal) (G1 Evacuation Pause) 6M->4M(12M) 1.455ms
+[14.085s][info][gc] GC(7) Pause Young (Normal) (G1 Evacuation Pause) 6M->5M(12M) 1.850ms
+[14.245s][info][gc] GC(8) Pause Young (Normal) (G1 Evacuation Pause) 6M->5M(12M) 2.008ms
+[14.295s][info][gc] GC(9) Pause Young (Concurrent Start) (G1 Evacuation Pause) 6M->5M(12M) 1.671ms
+[14.295s][info][gc] GC(10) Concurrent Mark Cycle
+[14.300s][info][gc] GC(10) Pause Remark 5M->5M(12M) 1.277ms
+[14.302s][info][gc] GC(10) Pause Cleanup 5M->5M(12M) 0.046ms
+[14.302s][info][gc] GC(10) Concurrent Mark Cycle 6.680ms
+[14.355s][info][gc] GC(11) Pause Young (Prepare Mixed) (G1 Evacuation Pause) 6M->6M(12M) 2.162ms
+[14.503s][info][gc] GC(12) Pause Young (Mixed) (G1 Evacuation Pause) 7M->5M(12M) 2.612ms
+[14.549s][info][gc] GC(13) Pause Young (Normal) (G1 Evacuation Pause) 6M->5M(12M) 2.079ms
+[15.602s][info][gc] GC(14) Pause Young (Normal) (G1 Evacuation Pause) 6M->5M(12M) 3.156ms
+[20.601s][info][gc] GC(15) Pause Young (Concurrent Start) (G1 Evacuation Pause) 6M->5M(12M) 2.837ms
+[20.601s][info][gc] GC(16) Concurrent Mark Cycle
+[20.607s][info][gc] GC(16) Pause Remark 5M->5M(12M) 2.822ms
+[20.609s][info][gc] GC(16) Pause Cleanup 5M->5M(12M) 0.103ms
+[20.609s][info][gc] GC(16) Concurrent Mark Cycle 8.143ms
+
+
+С момента Bubble Sort до старта Insert Sort произошло 22 сборки.
+Продолжительность Bubble Sort: 2 мин 59 cекунд
+Во время сборок used heap мах доходил до 7,580.240 б
+
+[28.452s][info][gc] GC(17) Pause Young (Prepare Mixed) (G1 Evacuation Pause) 7M->6M(12M) 1.968ms
+[35.643s][info][gc] GC(18) Pause Young (Mixed) (G1 Evacuation Pause) 7M->6M(12M) 2.895ms
+[43.610s][info][gc] GC(19) Pause Young (Concurrent Start) (G1 Evacuation Pause) 7M->6M(12M) 1.652ms
+[43.610s][info][gc] GC(20) Concurrent Mark Cycle
+[43.617s][info][gc] GC(20) Pause Remark 6M->6M(12M) 2.405ms
+[43.618s][info][gc] GC(20) Pause Cleanup 6M->6M(12M) 0.097ms
+[43.619s][info][gc] GC(20) Concurrent Mark Cycle 8.790ms
+[59.621s][info][gc] GC(21) Pause Young (Prepare Mixed) (G1 Evacuation Pause) 8M->6M(12M) 1.765ms
+[67.628s][info][gc] GC(22) Pause Young (Mixed) (G1 Evacuation Pause) 7M->5M(12M) 2.772ms
+[85.610s][info][gc] GC(23) Pause Young (Concurrent Start) (G1 Evacuation Pause) 7M->5M(12M) 2.212ms
+[85.610s][info][gc] GC(24) Concurrent Mark Cycle
+[85.616s][info][gc] GC(24) Pause Remark 5M->5M(12M) 2.122ms
+[85.617s][info][gc] GC(24) Pause Cleanup 5M->5M(12M) 0.088ms
+[85.617s][info][gc] GC(24) Concurrent Mark Cycle 7.186ms
+[102.616s][info][gc] GC(25) Pause Young (Normal) (G1 Evacuation Pause) 7M->5M(12M) 1.669ms
+[119.665s][info][gc] GC(26) Pause Young (Concurrent Start) (G1 Evacuation Pause) 7M->5M(12M) 1.678ms
+[119.665s][info][gc] GC(27) Concurrent Mark Cycle
+[119.670s][info][gc] GC(27) Pause Remark 5M->5M(12M) 1.889ms
+[119.672s][info][gc] GC(27) Pause Cleanup 5M->5M(12M) 0.083ms
+[119.672s][info][gc] GC(27) Concurrent Mark Cycle 6.921ms
+[132.799s][info][gc] GC(28) Pause Young (Concurrent Start) (G1 Humongous Allocation) 7M->4M(12M) 2.027ms
+[132.799s][info][gc] GC(29) Concurrent Mark Cycle
+[132.805s][info][gc] GC(29) Pause Remark 5M->5M(12M) 2.266ms
+[132.807s][info][gc] GC(29) Pause Cleanup 5M->5M(12M) 0.111ms
+[132.807s][info][gc] GC(29) Concurrent Mark Cycle 8.097ms
+[147.267s][info][gc] GC(30) Pause Young (Concurrent Start) (G1 Humongous Allocation) 7M->4M(12M) 1.993ms
+[147.267s][info][gc] GC(31) Concurrent Mark Cycle
+[147.274s][info][gc] GC(31) Pause Remark 7M->7M(12M) 2.386ms
+[147.276s][info][gc] GC(31) Pause Cleanup 8M->8M(12M) 0.087ms
+[147.277s][info][gc] GC(31) Concurrent Mark Cycle 9.467ms
+[147.284s][info][gc] GC(32) Pause Young (Normal) (G1 Evacuation Pause) 8M->6M(12M) 1.582ms
+[147.299s][info][gc] GC(33) Pause Young (Concurrent Start) (G1 Evacuation Pause) 8M->6M(12M) 1.659ms
+[147.299s][info][gc] GC(34) Concurrent Mark Cycle
+[147.304s][info][gc] GC(34) Pause Remark 7M->7M(12M) 1.889ms
+[147.339s][info][gc] GC(34) Pause Cleanup 8M->8M(12M) 0.113ms
+[147.339s][info][gc] GC(34) Concurrent Mark Cycle 39.655ms
+[147.341s][info][gc] GC(35) Pause Young (Normal) (G1 Evacuation Pause) 8M->6M(12M) 1.530ms
+[147.345s][info][gc] GC(36) Pause Young (Concurrent Start) (G1 Evacuation Pause) 8M->6M(12M) 1.313ms
+[147.346s][info][gc] GC(37) Concurrent Mark Cycle
+[147.351s][info][gc] GC(38) Pause Young (Normal) (G1 Evacuation Pause) 8M->6M(12M) 1.390ms
+[147.354s][info][gc] GC(37) Pause Remark 6M->6M(12M) 2.824ms
+[147.355s][info][gc] GC(37) Pause Cleanup 6M->6M(12M) 0.016ms
+[147.355s][info][gc] GC(37) Concurrent Mark Cycle 9.462ms
+[147.358s][info][gc] GC(39) Pause Young (Normal) (G1 Evacuation Pause) 8M->6M(12M) 1.317ms
+[147.361s][info][gc] GC(40) Pause Young (Concurrent Start) (G1 Evacuation Pause) 8M->6M(12M) 1.131ms
+[147.361s][info][gc] GC(41) Concurrent Mark Cycle
+[147.364s][info][gc] GC(42) Pause Young (Normal) (G1 Evacuation Pause) 7M->6M(12M) 0.923ms
+[147.380s][info][gc] GC(43) Pause Young (Normal) (G1 Evacuation Pause) 7M->6M(12M) 1.078ms
+[147.383s][info][gc] GC(41) Pause Remark 7M->7M(12M) 2.468ms
+[147.385s][info][gc] GC(44) Pause Young (Normal) (G1 Evacuation Pause) 7M->6M(12M) 0.818ms
+[147.386s][info][gc] GC(41) Pause Cleanup 7M->7M(12M) 0.089ms
+[147.386s][info][gc] GC(41) Concurrent Mark Cycle 24.925ms
+[147.388s][info][gc] GC(45) Pause Young (Normal) (G1 Evacuation Pause) 7M->6M(12M) 0.663ms
+[147.390s][info][gc] GC(46) Pause Young (Concurrent Start) (G1 Evacuation Pause) 7M->6M(12M) 0.780ms
+[147.390s][info][gc] GC(47) Concurrent Mark Cycle
+[147.393s][info][gc] GC(48) Pause Young (Normal) (G1 Evacuation Pause) 7M->6M(12M) 1.089ms
+[147.396s][info][gc] GC(49) Pause Young (Normal) (G1 Evacuation Pause) 7M->6M(12M) 0.964ms
+[147.399s][info][gc] GC(47) Pause Remark 7M->7M(12M) 2.661ms
+[147.401s][info][gc] GC(50) Pause Young (Normal) (G1 Evacuation Pause) 7M->6M(12M) 0.663ms
+[147.401s][info][gc] GC(47) Pause Cleanup 6M->6M(12M) 0.116ms
+[147.402s][info][gc] GC(47) Concurrent Mark Cycle 11.458ms
+[147.403s][info][gc] GC(51) Pause Young (Prepare Mixed) (G1 Evacuation Pause) 7M->6M(12M) 0.636ms
+[147.407s][info][gc] GC(52) Pause Young (Mixed) (G1 Evacuation Pause) 7M->6M(12M) 2.427ms
+[147.409s][info][gc] GC(53) Pause Young (Concurrent Start) (G1 Evacuation Pause) 7M->6M(12M) 0.940ms
+[147.409s][info][gc] GC(54) Concurrent Mark Cycle
+[147.415s][info][gc] GC(54) Pause Remark 8M->8M(12M) 1.837ms
+[147.416s][info][gc] GC(54) Pause Cleanup 8M->8M(12M) 0.101ms
+[147.416s][info][gc] GC(54) Concurrent Mark Cycle 7.403ms
+[147.695s][info][gc] GC(55) Pause Young (Normal) (G1 Evacuation Pause) 8M->5M(12M) 1.908ms
+[160.694s][info][gc] GC(56) Pause Young (Concurrent Start) (G1 Evacuation Pause) 7M->5M(12M) 1.683ms
+[160.694s][info][gc] GC(57) Concurrent Mark Cycle
+[160.699s][info][gc] GC(57) Pause Remark 5M->5M(12M) 2.217ms
+[160.701s][info][gc] GC(57) Pause Cleanup 5M->5M(12M) 0.144ms
+[160.701s][info][gc] GC(57) Concurrent Mark Cycle 7.424ms
+
+
+С момента Insert Sort до старта Merge Sort лог никакой активности не показал.
+Продолжительность Insert Sort: 7 cекунд
+Во время сборок used heap мах доходил до 7,295.512 б
+
+С момента Merge Sort до завершения программы лог никакой активности не показал.
+Продолжительность Insert Sort: 2 cекунд
+Во время сборок used heap мах доходил до 8,279.160 б
+
+
+
+
+-XX:+UseZGC -Xmx16m -Xms16m -Xlog:gc:logZGC.txt
+
+С начало старта приложения до старта создания массива произошло 21 сборок.
+Продолжительность: 10 cекунд
+В начале used heap был 10,485.760 б
+Во время сборок used heap мах доходил до 12,582.912 б
+
 [0.007s][info][gc] Using The Z Garbage Collector
 [0.135s][info][gc] GC(0) Garbage Collection (Warmup) 4M(22%)->4M(22%)
 [0.241s][info][gc] GC(1) Garbage Collection (Warmup) 4M(22%)->2M(11%)
@@ -21,9 +229,20 @@
 [6.547s][info][gc] GC(19) Garbage Collection (Allocation Rate) 10M(56%)->8M(44%)
 [6.651s][info][gc] GC(20) Garbage Collection (Allocation Rate) 10M(56%)->10M(56%)
 [7.556s][info][gc] GC(21) Garbage Collection (Allocation Rate) 10M(56%)->10M(56%)
+
+
+С момента создания массива до старта Bubble Sort произошло 3 малых сборок.
+Продолжительность: 15 cекунд
+Во время сборок used heap мах доходил до 12,582.912 б
 [16.432s][info][gc] GC(22) Garbage Collection (Proactive) 12M(67%)->8M(44%)
 [18.143s][info][gc] GC(23) Garbage Collection (Proactive) 10M(56%)->6M(33%)
 [19.555s][info][gc] GC(24) Garbage Collection (Proactive) 8M(44%)->8M(44%)
+
+
+С момента Bubble Sort до старта Insert Sort произошло 156 сборок.
+Продолжительность Bubble Sort: 3 мин 8 cекунд
+Во время сборок used heap мах доходил до 14,680.064 б
+
 [27.456s][info][gc] GC(25) Garbage Collection (Proactive) 10M(56%)->6M(33%)
 [29.436s][info][gc] GC(26) Garbage Collection (Proactive) 8M(44%)->6M(33%)
 [31.243s][info][gc] GC(27) Garbage Collection (Proactive) 10M(56%)->8M(44%)
@@ -181,7 +400,24 @@
 [202.134s][info][gc] GC(174) Garbage Collection (Proactive) 12M(67%)->10M(56%)
 [202.844s][info][gc] GC(175) Garbage Collection (Proactive) 12M(67%)->10M(56%)
 [203.534s][info][gc] GC(176) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+
+
+С момента Insert Sort до старта Merge Sort произошло 33 сборок.
+Продолжительность Insert Sort: 7 cекунд
+Во время сборок used heap мах доходил до 12,582.912 б
+
 [204.447s][info][gc] GC(177) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+[205.233s][info][gc] GC(178) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+[206.045s][info][gc] GC(179) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+[206.732s][info][gc] GC(180) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+[207.440s][info][gc] GC(181) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+[208.239s][info][gc] GC(182) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+[209.036s][info][gc] GC(183) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+[209.739s][info][gc] GC(184) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+[210.545s][info][gc] GC(185) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+[211.444s][info][gc] GC(186) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+[212.243s][info][gc] GC(187) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+204.447s][info][gc] GC(177) Garbage Collection (Proactive) 12M(67%)->10M(56%)
 [205.233s][info][gc] GC(178) Garbage Collection (Proactive) 12M(67%)->10M(56%)
 [206.045s][info][gc] GC(179) Garbage Collection (Proactive) 12M(67%)->10M(56%)
 [206.732s][info][gc] GC(180) Garbage Collection (Proactive) 12M(67%)->10M(56%)
@@ -215,8 +451,15 @@
 [230.540s][info][gc] GC(208) Garbage Collection (Proactive) 12M(67%)->10M(56%)
 [231.546s][info][gc] GC(209) Garbage Collection (Proactive) 12M(67%)->10M(56%)
 [232.540s][info][gc] GC(210) Garbage Collection (Proactive) 12M(67%)->10M(56%)
-[233.534s][info][gc] GC(211) Garbage Collection (Proactive) 12M(67%)->10M(56%)
+
+
+
+С момента Merge Sort до завершения программы произошло 4 сборок.
+Продолжительность Merge Sort: 2 cекунд
+Во время сборок used heap мах доходил до 10,485.912 б
+
 [234.541s][info][gc] GC(212) Garbage Collection (Proactive) 12M(67%)->10M(56%)
 [235.536s][info][gc] GC(213) Garbage Collection (Proactive) 12M(67%)->10M(56%)
 [236.548s][info][gc] GC(214) Garbage Collection (Proactive) 12M(67%)->10M(56%)
 [237.533s][info][gc] GC(215) Garbage Collection (Proactive) 12M(67%)->12M(67%)
+
