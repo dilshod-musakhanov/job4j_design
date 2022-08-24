@@ -7,15 +7,15 @@ import java.util.Random;
 
 public class CommentGenerator implements Generate {
 
-    public static final String PATH_PHRASES = "src/main/java/ru/job4j/gc/leak/files/phrases.txt";
+    public final String pathPhrases = "src/main/java/ru/job4j/gc/leak/files/phrases.txt";
 
-    public static final String SEPARATOR = System.lineSeparator();
+    public final String separator = System.lineSeparator();
 
-    private static List<Comment> comments = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
-    public static final Integer COUNT = 50;
+    public final int count = 50;
 
-    private static List<String> phrases;
+    private List<String> phrases;
 
     private UserGenerator userGenerator;
 
@@ -29,13 +29,13 @@ public class CommentGenerator implements Generate {
 
     private void read() {
         try {
-            phrases = read(PATH_PHRASES);
+            phrases = read(pathPhrases);
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
-    public static List<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
@@ -46,12 +46,13 @@ public class CommentGenerator implements Generate {
         List<Integer> ints = new ArrayList<>();
         random.ints(0, phrases.size())
                 .distinct().limit(3).forEach(ints::add);
-        for (int i = 0; i < COUNT; i++) {
-            String comment = phrases.get(ints.get(0))
-                + SEPARATOR
-                + phrases.get(ints.get(1))
-                + SEPARATOR
-                + phrases.get(ints.get(2));
+        for (int i = 0; i < count; i++) {
+            String comment = "";
+            comment = comment.concat(phrases.get(ints.get(0)))
+                    .concat(separator)
+                    .concat(phrases.get(ints.get(1)))
+                    .concat(separator)
+                    .concat(phrases.get(ints.get(2)));
             comments.add(new Comment(comment, userGenerator.randomUser()));
         }
     }

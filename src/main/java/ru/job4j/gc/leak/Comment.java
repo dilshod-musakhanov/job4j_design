@@ -1,5 +1,7 @@
 package ru.job4j.gc.leak;
 
+import java.util.Objects;
+
 public class Comment {
 
     private String text;
@@ -20,7 +22,20 @@ public class Comment {
     }
 
     @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
+    public boolean equals(Object o) {
+        if (this == o)  {
+            return true;
+        }
+        if (!(o instanceof Comment)) {
+            return false;
+        }
+        Comment comment = (Comment) o;
+        return Objects.equals(getText(), comment.getText())
+                && Objects.equals(user, comment.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getText(), user);
     }
 }
