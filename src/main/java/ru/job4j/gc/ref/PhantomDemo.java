@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 public class PhantomDemo {
 
-
     private static class MyPhantom extends PhantomReference<String> {
 
         private String name;
