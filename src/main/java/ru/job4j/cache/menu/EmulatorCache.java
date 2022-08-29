@@ -1,11 +1,13 @@
-package ru.job4j.cache;
+package ru.job4j.cache.menu;
+
+import ru.job4j.cache.DirFileCache;
 
 import java.util.Scanner;
 
 public class EmulatorCache {
 
-    DirFileCache dirFileCache;
-    Scanner scanner = new Scanner(System.in);
+    private static DirFileCache dirFileCache;
+    private static Scanner scanner = new Scanner(System.in);
 
     public static final int ADD_DIRECTORY = 1;
     public static final int LOAD_TO_CACHE = 2;
@@ -34,7 +36,7 @@ public class EmulatorCache {
     private void loadToCache() {
         System.out.println(FILE);
         String file = scanner.nextLine();
-        dirFileCache.put(file, dirFileCache.load(file));
+        dirFileCache.put(file, dirFileCache.get(file));
         System.out.println(EXECUTED);
     }
 
@@ -46,27 +48,23 @@ public class EmulatorCache {
         System.out.println(res);
     }
 
-    private void start() {
+    public static void main(String[] args) {
+        EmulatorCache emulatorCache = new EmulatorCache();
         boolean run = true;
         while (run) {
             System.out.println(MENU);
             System.out.print(SELECT);
             int option = Integer.parseInt(scanner.nextLine());
             if (ADD_DIRECTORY == option) {
-                insertDir();
+                emulatorCache.insertDir();
             } else if (LOAD_TO_CACHE == option) {
-                loadToCache();
+                emulatorCache.loadToCache();
             } else if (GET_CONTENT_FROM_CACHE == option) {
-                getFromCache();
+                emulatorCache.getFromCache();
             } else {
                 run = false;
                 System.out.println(EXIT);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        EmulatorCache emulatorCache = new EmulatorCache();
-        emulatorCache.start();
     }
 }
