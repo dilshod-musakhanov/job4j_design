@@ -14,29 +14,26 @@ public class MaxMinTest {
     @Test
     public void whenIntMaxSorted() {
         MaxMin maxMin = new MaxMin();
-        Comparator<Integer> comparator = Integer::compareTo;
         List<Integer> numbers = List.of(1, 3, 5, 7);
         int expected = 7;
-        int result = maxMin.sortByComparator(numbers, comparator);
+        int result = maxMin.max(numbers, Integer::compareTo);
         assertThat(expected, is(result));
     }
 
     @Test
     public void whenIntMinSorted() {
         MaxMin maxMin = new MaxMin();
-        Comparator<Integer> comparator = Integer::compareTo;
         List<Integer> numbers = List.of(1, 3, 5, 7);
         int expected = 1;
-        int result = maxMin.sortByComparator(numbers, comparator.reversed());
+        int result = maxMin.min(numbers, Integer::compareTo);
         assertThat(expected, is(result));
     }
 
     @Test
     public void whenNullIsResult() {
         MaxMin maxMin = new MaxMin();
-        Comparator<Integer> comparator = Integer::compareTo;
         List<Integer> numbers = List.of();
-        assertNull(maxMin.sortByComparator(numbers, comparator));
+        assertNull(maxMin.max(numbers, Integer::compareTo));
     }
 
     @Test
@@ -44,16 +41,15 @@ public class MaxMinTest {
         MaxMin maxMin = new MaxMin();
         List<String> strings = List.of("AAA", "BBB", "CCC");
         String expected = "CCC";
-        assertThat(expected, is(maxMin.sortByComparator(strings, String::compareTo)));
+        assertThat(expected, is(maxMin.max(strings, String::compareTo)));
     }
 
     @Test
     public void whenStringMinSorted() {
         MaxMin maxMin = new MaxMin();
-        Comparator<String> comparator = String::compareTo;
         List<String> strings = List.of("AAA", "BBB", "CCC");
         String expected = "AAA";
-        String result = maxMin.sortByComparator(strings, comparator.reversed());
+        String result = maxMin.min(strings, String::compareTo);
         assertThat(expected, is(result));
     }
 }
