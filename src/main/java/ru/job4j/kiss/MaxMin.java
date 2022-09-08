@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class MaxMin {
-    public <T> T sortByComparator(List<T> value, Comparator<T> comparator) {
+    private  <T> T sortByComparator(List<T> value, Comparator<T> comparator) {
         T temp = null;
         if (!value.isEmpty()) {
             temp = value.get(0);
