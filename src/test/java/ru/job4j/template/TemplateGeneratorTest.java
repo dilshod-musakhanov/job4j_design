@@ -1,5 +1,6 @@
 package ru.job4j.template;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 import static org.assertj.core.api.Assertions.*;
@@ -15,6 +16,7 @@ public class TemplateGeneratorTest {
 
     private final static String TEMPLATE = "I am a ${name}, Who are ${subject}? ";
 
+    @Ignore
     @Test
     public void whenTemplateProduce() {
         TemplateGenerator tg = new TemplateGenerator();
