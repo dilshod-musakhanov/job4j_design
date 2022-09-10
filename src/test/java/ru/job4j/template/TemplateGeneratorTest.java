@@ -1,8 +1,6 @@
-/*
 package ru.job4j.template;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,14 +8,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
 
 @Disabled
 public class TemplateGeneratorTest {
 
     private final static String TEMPLATE = "I am a ${name}, Who are ${subject}? ";
 
-    @Ignore
     @Test
     public void whenTemplateProduce() {
         TemplateGenerator tg = new TemplateGenerator();
@@ -47,4 +43,4 @@ public class TemplateGeneratorTest {
         Map<String, String> map = Map.of("name", "Peter", "subject", "you");
         assertThrows(IllegalArgumentException.class, () -> tg.produce(template, map));
     }
-}*/
+}
