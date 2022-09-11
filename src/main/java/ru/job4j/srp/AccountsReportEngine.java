@@ -9,16 +9,18 @@ public class AccountsReportEngine implements Report {
 
     private static final String LS = System.lineSeparator();
 
-    private int bonus = 10;
+    public static final int BONUS = 10;
 
-    Store store;
+    public static final int TO_GET_10_PCT = 100;
+
+    private Store store;
 
     public AccountsReportEngine(Store store) {
         this.store = store;
     }
 
     public double addBonus(double salary, int bonus) {
-        return salary + ((salary * bonus) / 100);
+        return salary + ((salary * bonus) / TO_GET_10_PCT);
     }
 
     @Override
@@ -30,7 +32,7 @@ public class AccountsReportEngine implements Report {
             text.append(employee.getName()).append(";")
                     .append(DATE_FORMAT.format(employee.getHired().getTime())).append(";")
                     .append(DATE_FORMAT.format(employee.getFired().getTime())).append(";")
-                    .append(addBonus(employee.getSalary(), bonus)).append(";")
+                    .append(addBonus(employee.getSalary(), BONUS)).append(";")
                     .append(LS);
         }
         return text.toString();

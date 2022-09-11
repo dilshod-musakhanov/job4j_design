@@ -60,7 +60,6 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100000);
         store.add(worker);
-        int bonus = 10;
         AccountsReportEngine engine = new AccountsReportEngine(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
@@ -68,7 +67,7 @@ public class ReportEngineTest {
                 .append(worker.getName()).append(";")
                 .append(DATE_FORMAT.format(worker.getHired().getTime())).append(";")
                 .append(DATE_FORMAT.format(worker.getFired().getTime())).append(";")
-                .append(engine.addBonus(worker.getSalary(), bonus)).append(";")
+                .append(engine.addBonus(worker.getSalary(), AccountsReportEngine.BONUS)).append(";")
                 .append(LS);
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }
@@ -81,6 +80,12 @@ public class ReportEngineTest {
         store.add(worker);
         ITReportEngine engine = new ITReportEngine(store);
         StringBuilder expect = new StringBuilder()
+                .append("<html lang=\"en\">").append(LS)
+                .append("<head>").append(LS)
+                .append("meta charset=\"UTF-8\">").append(LS)
+                .append("<title>").append("IT Report").append("</title>").append(LS)
+                .append("</head>").append(LS)
+                .append("<body>").append(LS)
                 .append("<table>").append(LS)
                 .append("<tr>").append(LS)
                 .append("<th>").append("Name").append("</th>").append(LS)
@@ -95,7 +100,9 @@ public class ReportEngineTest {
                 .append("</td>").append(LS)
                 .append("<td>").append(worker.getSalary()).append("</td>").append(LS)
                 .append("</tr>").append(LS)
-                .append("</table>");
+                .append("</table>").append(LS)
+                .append("</body>").append(LS)
+                .append("</html>").append(LS);
         assertThat(engine.generate(emp -> true)).isEqualTo(expect.toString());
     }
 }

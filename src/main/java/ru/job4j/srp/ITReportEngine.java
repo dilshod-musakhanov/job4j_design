@@ -9,7 +9,7 @@ public class ITReportEngine implements Report {
 
     private static final String LS = System.lineSeparator();
 
-    Store store;
+    private Store store;
 
     public ITReportEngine(Store store) {
         this.store = store;
@@ -18,6 +18,12 @@ public class ITReportEngine implements Report {
     @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder()
+                .append("<html lang=\"en\">").append(LS)
+                .append("<head>").append(LS)
+                .append("meta charset=\"UTF-8\">").append(LS)
+                .append("<title>").append("IT Report").append("</title>").append(LS)
+                .append("</head>").append(LS)
+                .append("<body>").append(LS)
                 .append("<table>").append(LS)
                         .append("<tr>").append(LS)
                         .append("<th>").append("Name").append("</th>").append(LS)
@@ -35,7 +41,9 @@ public class ITReportEngine implements Report {
                     .append("<td>").append(employee.getSalary()).append("</td>").append(LS)
                     .append("</tr>").append(LS);
         }
-        text.append("</table>");
+        text.append("</table>").append(LS)
+                .append("</body>").append(LS)
+                .append("</html>").append(LS);
         return text.toString();
     }
 }

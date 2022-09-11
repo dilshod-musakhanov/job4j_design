@@ -7,7 +7,7 @@ public class HrReportEngine implements Report {
 
     private static final String LS = System.lineSeparator();
 
-    Store store;
+    private Store store;
 
     public HrReportEngine(Store store) {
         this.store = store;
