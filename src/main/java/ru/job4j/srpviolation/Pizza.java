@@ -1,4 +1,4 @@
-package ru.job4j.srp;
+package ru.job4j.srpviolation;
 
 /*
 * Класс описывает намеренное нарушение первого принципа SOLID

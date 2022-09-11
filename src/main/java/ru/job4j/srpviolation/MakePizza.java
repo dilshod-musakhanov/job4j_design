@@ -1,4 +1,4 @@
-package ru.job4j.srp;
+package ru.job4j.srpviolation;
 
 /*
 *  Интерфейс описывает намеренное нарушение первого принципа SOLID
