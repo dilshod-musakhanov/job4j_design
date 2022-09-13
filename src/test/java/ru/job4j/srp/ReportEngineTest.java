@@ -1,6 +1,9 @@
 package ru.job4j.srp;
 
 import org.junit.Test;
+
+import javax.xml.bind.JAXBException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static ru.job4j.srp.ReportEngine.DATE_FORMAT;
@@ -103,6 +106,50 @@ public class ReportEngineTest {
                 .append("</table>").append(LS)
                 .append("</body>").append(LS)
                 .append("</html>").append(LS);
+        assertThat(engine.generate(emp -> true)).isEqualTo(expect.toString());
+    }
+
+    @Test
+    public void whenJsonReportGenerated() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 100000);
+        store.add(worker);
+        JsonReportEngine engine = new JsonReportEngine(store);
+        StringBuilder expect = new StringBuilder()
+                .append("[").append("{\"name\":").append("\"Ivan\",")
+                .append("\"hired\":")
+                .append("{\"year\":").append(now.get(Calendar.YEAR)).append(",\"month\":")
+                .append(now.get(Calendar.MONTH)).append(",\"dayOfMonth\":")
+                .append(now.get(Calendar.DAY_OF_MONTH)).append(",\"hourOfDay\":")
+                .append(now.get(Calendar.HOUR_OF_DAY)).append(",\"minute\":")
+                .append(now.get(Calendar.MINUTE)).append(",\"second\":")
+                .append(now.get(Calendar.SECOND)).append("},")
+                .append("\"fired\":")
+                .append("{\"year\":").append(now.get(Calendar.YEAR)).append(",\"month\":")
+                .append(now.get(Calendar.MONTH)).append(",\"dayOfMonth\":")
+                .append(now.get(Calendar.DAY_OF_MONTH)).append(",\"hourOfDay\":")
+                .append(now.get(Calendar.HOUR_OF_DAY)).append(",\"minute\":")
+                .append(now.get(Calendar.MINUTE)).append(",\"second\":")
+                .append(now.get(Calendar.SECOND)).append("},")
+                .append("\"salary\":").append(worker.getSalary()).append("}]");
+        assertThat(engine.generate(emp -> true)).isEqualTo(expect.toString());
+    }
+
+    @Test
+    public void whenXmlReportGenerated() throws JAXBException {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 100000);
+        store.add(worker);
+        XmlReportEngine engine = new XmlReportEngine(store);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        StringBuilder expect = new StringBuilder()
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
+                .append("<employee name=\"Ivan\" salary=\"100000.0\">\n")
+                .append("    <hired>").append(formatter.format(worker.getHired().getTime())).append("</hired>\n")
+                .append("    <fired>").append(formatter.format(worker.getFired().getTime())).append("</fired>\n")
+                .append("</employee>\n");
         assertThat(engine.generate(emp -> true)).isEqualTo(expect.toString());
     }
 }
