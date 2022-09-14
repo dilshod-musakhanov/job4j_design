@@ -1,11 +1,10 @@
 package ru.job4j.srp;
 
-import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.*;
 import java.util.Calendar;
 import java.util.Objects;
 
-@XmlRootElement(name = "employee")
+@XmlRootElement()
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Employee {
 

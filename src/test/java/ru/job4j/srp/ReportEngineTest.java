@@ -2,7 +2,6 @@ package ru.job4j.srp;
 
 import org.junit.Test;
 
-import javax.xml.bind.JAXBException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -137,7 +136,7 @@ public class ReportEngineTest {
     }
 
     @Test
-    public void whenXmlReportGenerated() throws JAXBException {
+    public void whenXmlReportGenerated() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100000);
@@ -146,10 +145,12 @@ public class ReportEngineTest {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         StringBuilder expect = new StringBuilder()
                 .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n")
-                .append("<employee name=\"Ivan\" salary=\"100000.0\">\n")
-                .append("    <hired>").append(formatter.format(worker.getHired().getTime())).append("</hired>\n")
-                .append("    <fired>").append(formatter.format(worker.getFired().getTime())).append("</fired>\n")
-                .append("</employee>\n");
+                .append("<employees>\n")
+                .append("    <employee name=\"Ivan\" salary=\"100000.0\">\n")
+                .append("        <hired>").append(formatter.format(worker.getHired().getTime())).append("</hired>\n")
+                .append("        <fired>").append(formatter.format(worker.getFired().getTime())).append("</fired>\n")
+                .append("    </employee>\n")
+                .append("</employees>\n");
         assertThat(engine.generate(emp -> true)).isEqualTo(expect.toString());
     }
 }
