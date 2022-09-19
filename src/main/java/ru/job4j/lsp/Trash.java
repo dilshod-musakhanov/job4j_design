@@ -1,38 +1,29 @@
 package ru.job4j.lsp;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Trash implements Store {
     private List<Food> foodList = new ArrayList<>();
-    private LocalDate today = LocalDate.now();
-    private LocalDate createdDate;
-    private LocalDate expireDate;
-    private int expireDaysPassedTillToday;
-    private int expireFullPeriod;
+    private final static int EXPIRE_PCT_FUL = 100;
 
     @Override
-    public Food validate(Food food) {
+    public Food validate(Food food, int expireInPctUpToday) {
         Food result = null;
-        createdDate = food.getCreatedDate();
-        expireDate = food.getExpireDate();
-        expireFullPeriod = (int) ChronoUnit.DAYS.between(createdDate, expireDate);
-        expireDaysPassedTillToday = (int) ChronoUnit.DAYS.between(createdDate, today);
-        if (expireDaysPassedTillToday > expireFullPeriod) {
+        if (EXPIRE_PCT_FUL <= expireInPctUpToday) {
             result = food;
         }
         return result;
     }
 
     @Override
-    public Food add(Food food) {
-        Food result = null;
-        if (null != validate(food)) {
+    public boolean add(Food food, int expireInPctUpToday) {
+        boolean result = false;
+        if (null != validate(food, expireInPctUpToday)) {
             foodList.add(food);
-            result = food;
-            System.out.println(result.getName() + " sent to Trash");
+            result = true;
+            System.out.println(food.getName() + " with its "
+                    + expireInPctUpToday + "% expiration passed period sent to Trash");
         }
         return result;
     }
@@ -48,6 +39,7 @@ public class Trash implements Store {
         for (Food food : foodList) {
             if (food.getName() == name) {
                 result.add(food);
+                break;
             }
         }
         return result;
@@ -59,6 +51,7 @@ public class Trash implements Store {
         for (Food food : foodList) {
             if (food.getName() == name) {
                 result = food;
+                break;
             }
         }
         return result;

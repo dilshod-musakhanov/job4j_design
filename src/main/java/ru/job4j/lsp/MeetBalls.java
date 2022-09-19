@@ -84,7 +84,9 @@ public class MeetBalls extends Food {
             return false;
         }
         MeetBalls meetBalls = (MeetBalls) o;
-        return Double.compare(meetBalls.getPrice(), getPrice()) == 0 && Objects.equals(getName(), meetBalls.getName()) && Objects.equals(getCreatedDate(), meetBalls.getCreatedDate()) && Objects.equals(getExpireDate(), meetBalls.getExpireDate());
+        return Double.compare(meetBalls.getPrice(), getPrice()) == 0 && Objects.equals(getName(), meetBalls.getName())
+                && Objects.equals(getCreatedDate(), meetBalls.getCreatedDate())
+                && Objects.equals(getExpireDate(), meetBalls.getExpireDate());
     }
 
     @Override

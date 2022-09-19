@@ -1,41 +1,30 @@
 package ru.job4j.lsp;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse implements Store {
     private List<Food> foodList = new ArrayList<>();
     private final static int EXPIRE_PCT = 25;
-    private LocalDate today = LocalDate.now();
-    private LocalDate createdDate;
-    private LocalDate expireDate;
-    private int expireDaysPassedTillToday;
-    private int expireFullPeriod;
-    private int expireDaysFromPct;
+
 
     @Override
-    public Food validate(Food food) {
+    public Food validate(Food food, int expireInPctUpToday) {
         Food result = null;
-        createdDate = food.getCreatedDate();
-        expireDate = food.getExpireDate();
-        expireFullPeriod = (int) ChronoUnit.DAYS.between(createdDate, expireDate);
-        expireDaysPassedTillToday = (int) ChronoUnit.DAYS.between(createdDate, today);
-        expireDaysFromPct = (int) Math.floor(EXPIRE_PCT * expireFullPeriod / 100);
-        if (expireDaysPassedTillToday <= expireDaysFromPct) {
+        if (EXPIRE_PCT > expireInPctUpToday) {
             result = food;
         }
         return result;
     }
 
     @Override
-    public Food add(Food food) {
-        Food result = null;
-        if (null != validate(food)) {
+    public boolean add(Food food, int expireInPctUpToday) {
+        boolean result = false;
+        if (null != validate(food, expireInPctUpToday)) {
             foodList.add(food);
-            result = food;
-            System.out.println(result.getName() + " sent to Warehouse");
+            result = true;
+            System.out.println(food.getName() + " with its "
+                    + expireInPctUpToday + "% expiration passed period sent to Warehouse");
         }
         return result;
     }
@@ -51,6 +40,7 @@ public class Warehouse implements Store {
         for (Food food : foodList) {
             if (food.getName() == name) {
                 result.add(food);
+                break;
             }
         }
         return result;
@@ -62,6 +52,7 @@ public class Warehouse implements Store {
         for (Food food : foodList) {
             if (food.getName() == name) {
                 result = food;
+                break;
             }
         }
         return result;

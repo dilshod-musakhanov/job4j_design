@@ -22,84 +22,96 @@ public class ControlQualityTest {
     }
 
     @Test
-    public void whenSentToWarehouse() {
+    public void whenBelow25PctSendToWarehouse() {
         ControlQuality controlQuality = new ControlQuality(stores);
         Food cheeseCake = new CheeseCake(
-                "cheese cake", LocalDate.now().minusDays(3), LocalDate.now().plusDays(10), 100.00
+                "cheese cake", LocalDate.now().minusDays(10), LocalDate.now().plusDays(31), 150.00
         );
-        controlQuality.checkAndDestribute(cheeseCake);
+
+        controlQuality.checkAndDistribute(cheeseCake);
         Food expected = warehouse.findByNameAndReturnFood("cheese cake");
         assertThat(expected, is(cheeseCake));
     }
 
     @Test
-    public void whenSentToShop() {
+    public void whenBetween25PctAnd75PctSendToShop() {
         ControlQuality controlQuality = new ControlQuality(stores);
-        Food meetBalls = new MeetBalls(
-                "meet balls", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 150.00
+        Food cheeseCakeSpecial = new CheeseCake(
+                "cheese cake special", LocalDate.now().minusDays(3), LocalDate.now().plusDays(9), 180.00
         );
-        controlQuality.checkAndDestribute(meetBalls);
-        Food expected = shop.findByNameAndReturnFood("meet balls");
-        assertThat(expected, is(meetBalls));
+        controlQuality.checkAndDistribute(cheeseCakeSpecial);
+        Food expected = shop.findByNameAndReturnFood("cheese cake special");
+        assertThat(expected, is(cheeseCakeSpecial));
     }
 
     @Test
-    public void whenSentToTrash() {
-        ControlQuality controlQuality = new ControlQuality(stores);
-        Food meetBalls = new MeetBalls(
-                "spicy meet balls", LocalDate.now().minusDays(10), LocalDate.now().minusDays(1), 170.00
-        );
-        controlQuality.checkAndDestribute(meetBalls);
-        Food expected = trash.findByNameAndReturnFood("spicy meet balls");
-        assertThat(expected, is(meetBalls));
-    }
-
-    @Test
-    public void whenSentToShopOnDiscount() {
+    public void whenAbove75PctSendToShopOnDiscount() {
         ControlQuality controlQuality = new ControlQuality(stores);
         Food homeBread = new HomeBread(
-                "home bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(1), 80.00);
-        controlQuality.checkAndDestribute(homeBread);
+                "home bread", LocalDate.now().minusDays(7), LocalDate.now().plusDays(2), 100.00
+        );
+        controlQuality.checkAndDistribute(homeBread);
         Food expected = shop.findByNameAndReturnFood("home bread");
-        assertThat(expected.getPrice(), is(64.0));
+        assertThat(expected.getPrice(), is(80.0));
+    }
+
+    @Test
+    public void whenExpiration100PctAndAboveSendToTrash() {
+        ControlQuality controlQuality = new ControlQuality(stores);
+        Food homeBreadHoney = new HomeBread(
+                "home bread with honey", LocalDate.now().minusDays(5), LocalDate.now(), 120.00
+        );
+        controlQuality.checkAndDistribute(homeBreadHoney);
+        Food expected = trash.findByNameAndReturnFood("home bread with honey");
+        assertThat(expected, is(homeBreadHoney));
     }
 
     @Test
     public void whenFindAllInShop() {
         ControlQuality controlQuality = new ControlQuality(stores);
         Food homeBread1 = new HomeBread(
-                "home butter bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 80.00
+                "home butter bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 110.00
         );
         Food homeBread2 = new HomeBread(
-                "home cheese bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 80.00
+                "home cheese bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 110.00
         );
         Food homeBread3 = new HomeBread(
-                "home honey bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 80.00
+                "home honey bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 110.00
         );
-        controlQuality.checkAndDestribute(homeBread1);
-        controlQuality.checkAndDestribute(homeBread2);
-        controlQuality.checkAndDestribute(homeBread3);
+        Food homeBread4 = new HomeBread(
+                "home garlic bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(50), 110.00
+        );
+        controlQuality.checkAndDistribute(homeBread1);
+        controlQuality.checkAndDistribute(homeBread2);
+        controlQuality.checkAndDistribute(homeBread3);
+        controlQuality.checkAndDistribute(homeBread4);
         List<Food> expected = shop.findAll();
-        assertThat(expected.size(), is(3));
+        assertThat(expected, is(List.of(
+                homeBread1, homeBread2, homeBread3
+        )));
     }
 
     @Test
-    public void whenSameFoodInShop() {
+    public void whenListOfFoodDistributed() {
         ControlQuality controlQuality = new ControlQuality(stores);
-        Food homeBread1 = new HomeBread(
-                "home butter bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 80.00
+        Food cheeseCake = new CheeseCake(
+                "cheese cake", LocalDate.now().minusDays(10), LocalDate.now().plusDays(31), 150.00
         );
-        Food homeBread2 = new HomeBread(
-                "home butter bread", LocalDate.now().minusDays(9), LocalDate.now().plusDays(9), 80.00
+        Food cheeseCakeSpecial = new CheeseCake(
+                "cheese cake special", LocalDate.now().minusDays(3), LocalDate.now().plusDays(9), 180.00
         );
-        Food homeBread3 = new HomeBread(
-                "home butter bread", LocalDate.now().minusDays(8), LocalDate.now().plusDays(8), 80.00
+        Food homeBreadHoney = new HomeBread(
+                "home bread with honey", LocalDate.now().minusDays(5), LocalDate.now(), 120.00
         );
-        controlQuality.checkAndDestribute(homeBread1);
-        controlQuality.checkAndDestribute(homeBread2);
-        controlQuality.checkAndDestribute(homeBread3);
-        List<Food> expected = shop.findByNameAndReturnFoodList("home butter bread");
-        assertThat(expected.size(), is(3));
+        controlQuality.checkAndDistributeListOfFood(
+                List.of(cheeseCake, cheeseCakeSpecial, homeBreadHoney)
+        );
+        Food expected1 = warehouse.findByNameAndReturnFood("cheese cake");
+        Food expected2 = shop.findByNameAndReturnFood("cheese cake special");
+        Food expected3 = trash.findByNameAndReturnFood("home bread with honey");
+        assertThat(expected1, is(cheeseCake));
+        assertThat(expected2, is(cheeseCakeSpecial));
+        assertThat(expected3, is(homeBreadHoney));
     }
 
 }

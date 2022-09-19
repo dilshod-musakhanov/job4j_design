@@ -84,7 +84,9 @@ public class HomeBread extends Food {
             return false;
         }
         HomeBread homeBread = (HomeBread) o;
-        return Double.compare(homeBread.getPrice(), getPrice()) == 0 && Objects.equals(getName(), homeBread.getName()) && Objects.equals(getCreatedDate(), homeBread.getCreatedDate()) && Objects.equals(getExpireDate(), homeBread.getExpireDate());
+        return Double.compare(homeBread.getPrice(), getPrice()) == 0 && Objects.equals(getName(), homeBread.getName())
+                && Objects.equals(getCreatedDate(), homeBread.getCreatedDate())
+                && Objects.equals(getExpireDate(), homeBread.getExpireDate());
     }
 
     @Override

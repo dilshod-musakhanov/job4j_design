@@ -74,7 +74,9 @@ public class CheeseCake extends Food {
             return false;
         }
         CheeseCake cheese = (CheeseCake) o;
-        return Double.compare(cheese.getPrice(), getPrice()) == 0 && Objects.equals(getName(), cheese.getName()) && Objects.equals(getCreatedDate(), cheese.getCreatedDate()) && Objects.equals(getExpireDate(), cheese.getExpireDate());
+        return Double.compare(cheese.getPrice(), getPrice()) == 0 && Objects.equals(getName(), cheese.getName())
+                && Objects.equals(getCreatedDate(), cheese.getCreatedDate())
+                && Objects.equals(getExpireDate(), cheese.getExpireDate());
     }
 
     @Override
