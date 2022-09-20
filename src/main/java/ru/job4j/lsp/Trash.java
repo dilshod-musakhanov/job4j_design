@@ -8,18 +8,15 @@ public class Trash implements Store {
     private final static int EXPIRE_PCT_FUL = 100;
 
     @Override
-    public Food validate(Food food, int expireInPctUpToday) {
-        Food result = null;
-        if (EXPIRE_PCT_FUL <= expireInPctUpToday) {
-            result = food;
-        }
+    public boolean validate(Food food, int expireInPctUpToday) {
+        boolean result = EXPIRE_PCT_FUL <= expireInPctUpToday;
         return result;
     }
 
     @Override
     public boolean add(Food food, int expireInPctUpToday) {
         boolean result = false;
-        if (null != validate(food, expireInPctUpToday)) {
+        if (validate(food, expireInPctUpToday)) {
             foodList.add(food);
             result = true;
             System.out.println(food.getName() + " with its "
@@ -39,7 +36,6 @@ public class Trash implements Store {
         for (Food food : foodList) {
             if (food.getName() == name) {
                 result.add(food);
-                break;
             }
         }
         return result;

@@ -17,15 +17,16 @@ public class Shop implements Store {
     }
 
     @Override
-    public Food validate(Food food, int expireInPctUpToday) {
-        Food result = null;
+    public boolean validate(Food food, int expireInPctUpToday) {
+        boolean result = false;
         if (EXPIRE_PCT_FROM <= expireInPctUpToday
                 && EXPIRE_PCT_UP_TO >= expireInPctUpToday) {
-            result = food;
+            result = true;
         }
         if (EXPIRE_PCT_UP_TO < expireInPctUpToday
                 && EXPIRE_PCT_FUL > expireInPctUpToday) {
-            result = applyDiscount(food);
+            applyDiscount(food);
+            result = true;
             System.out.println("Discount applied on " + food.getName());
         }
         return result;
@@ -34,7 +35,7 @@ public class Shop implements Store {
     @Override
     public boolean add(Food food, int expireInPctUpToday) {
         boolean result = false;
-        if (null != validate(food, expireInPctUpToday)) {
+        if (validate(food, expireInPctUpToday)) {
             foodList.add(food);
             result = true;
             System.out.println(food.getName() + " with its "
@@ -54,7 +55,6 @@ public class Shop implements Store {
         for (Food food : foodList) {
             if (food.getName() == name) {
                 result.add(food);
-                break;
             }
         }
         return result;

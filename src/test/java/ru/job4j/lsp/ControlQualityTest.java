@@ -25,7 +25,11 @@ public class ControlQualityTest {
     public void whenBelow25PctSendToWarehouse() {
         ControlQuality controlQuality = new ControlQuality(stores);
         Food cheeseCake = new CheeseCake(
-                "cheese cake", LocalDate.now().minusDays(10), LocalDate.now().plusDays(31), 150.00
+                "cheese cake",
+                LocalDate.now().minusDays(10),
+                LocalDate.now().plusDays(31),
+                150.00,
+                0
         );
 
         controlQuality.checkAndDistribute(cheeseCake);
@@ -37,7 +41,11 @@ public class ControlQualityTest {
     public void whenBetween25PctAnd75PctSendToShop() {
         ControlQuality controlQuality = new ControlQuality(stores);
         Food cheeseCakeSpecial = new CheeseCake(
-                "cheese cake special", LocalDate.now().minusDays(3), LocalDate.now().plusDays(9), 180.00
+                "cheese cake special",
+                LocalDate.now().minusDays(3),
+                LocalDate.now().plusDays(9),
+                180.00,
+                0
         );
         controlQuality.checkAndDistribute(cheeseCakeSpecial);
         Food expected = shop.findByNameAndReturnFood("cheese cake special");
@@ -48,7 +56,11 @@ public class ControlQualityTest {
     public void whenAbove75PctSendToShopOnDiscount() {
         ControlQuality controlQuality = new ControlQuality(stores);
         Food homeBread = new HomeBread(
-                "home bread", LocalDate.now().minusDays(7), LocalDate.now().plusDays(2), 100.00
+                "home bread",
+                LocalDate.now().minusDays(7),
+                LocalDate.now().plusDays(2),
+                100.00,
+                0
         );
         controlQuality.checkAndDistribute(homeBread);
         Food expected = shop.findByNameAndReturnFood("home bread");
@@ -59,7 +71,11 @@ public class ControlQualityTest {
     public void whenExpiration100PctAndAboveSendToTrash() {
         ControlQuality controlQuality = new ControlQuality(stores);
         Food homeBreadHoney = new HomeBread(
-                "home bread with honey", LocalDate.now().minusDays(5), LocalDate.now(), 120.00
+                "home bread with honey",
+                LocalDate.now().minusDays(5),
+                LocalDate.now(),
+                120.00,
+                0
         );
         controlQuality.checkAndDistribute(homeBreadHoney);
         Food expected = trash.findByNameAndReturnFood("home bread with honey");
@@ -70,16 +86,32 @@ public class ControlQualityTest {
     public void whenFindAllInShop() {
         ControlQuality controlQuality = new ControlQuality(stores);
         Food homeBread1 = new HomeBread(
-                "home butter bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 110.00
+                "home butter bread",
+                LocalDate.now().minusDays(10),
+                LocalDate.now().plusDays(10),
+                110.00,
+                0
         );
         Food homeBread2 = new HomeBread(
-                "home cheese bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 110.00
+                "home cheese bread",
+                LocalDate.now().minusDays(10),
+                LocalDate.now().plusDays(10),
+                110.00,
+                0
         );
         Food homeBread3 = new HomeBread(
-                "home honey bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(10), 110.00
+                "home honey bread",
+                LocalDate.now().minusDays(10),
+                LocalDate.now().plusDays(10),
+                110.00,
+                0
         );
         Food homeBread4 = new HomeBread(
-                "home garlic bread", LocalDate.now().minusDays(10), LocalDate.now().plusDays(50), 110.00
+                "home garlic bread",
+                LocalDate.now().minusDays(10),
+                LocalDate.now().plusDays(50),
+                110.00,
+                0
         );
         controlQuality.checkAndDistribute(homeBread1);
         controlQuality.checkAndDistribute(homeBread2);
@@ -95,13 +127,25 @@ public class ControlQualityTest {
     public void whenListOfFoodDistributed() {
         ControlQuality controlQuality = new ControlQuality(stores);
         Food cheeseCake = new CheeseCake(
-                "cheese cake", LocalDate.now().minusDays(10), LocalDate.now().plusDays(31), 150.00
+                "cheese cake",
+                LocalDate.now().minusDays(10),
+                LocalDate.now().plusDays(31),
+                150.00,
+                0
         );
         Food cheeseCakeSpecial = new CheeseCake(
-                "cheese cake special", LocalDate.now().minusDays(3), LocalDate.now().plusDays(9), 180.00
+                "cheese cake special",
+                LocalDate.now().minusDays(3),
+                LocalDate.now().plusDays(9),
+                180.00,
+                0
         );
         Food homeBreadHoney = new HomeBread(
-                "home bread with honey", LocalDate.now().minusDays(5), LocalDate.now(), 120.00
+                "home bread with honey",
+                LocalDate.now().minusDays(5),
+                LocalDate.now(),
+                120.00,
+                0
         );
         controlQuality.checkAndDistributeListOfFood(
                 List.of(cheeseCake, cheeseCakeSpecial, homeBreadHoney)

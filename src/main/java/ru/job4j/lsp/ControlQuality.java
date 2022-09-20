@@ -1,11 +1,9 @@
 package ru.job4j.lsp;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class ControlQuality {
     private List<Store> stores;
-    private List<Food> foodList;
 
     public ControlQuality(List<Store> stores) {
         this.stores = stores;
