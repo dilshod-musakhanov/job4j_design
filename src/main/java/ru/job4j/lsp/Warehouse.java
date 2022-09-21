@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse implements Store {
-    private List<Food> foodList = new ArrayList<>();
     private final static int EXPIRE_PCT = 25;
+    private List<Food> foodList = new ArrayList<>();
 
     @Override
     public boolean validate(Food food, int expireInPctUpToday) {

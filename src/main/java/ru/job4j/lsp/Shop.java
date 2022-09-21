@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Shop implements Store {
-    private List<Food> foodList = new ArrayList<>();
     private final static int EXPIRE_PCT_FROM = 25;
     private final static int EXPIRE_PCT_UP_TO = 75;
     private final static int EXPIRE_PCT_FUL = 100;
     private final static int DISCOUNT_IN_PCT = 20;
+    private List<Food> foodList = new ArrayList<>();
 
     private Food applyDiscount(Food food) {
         food.setDiscount(DISCOUNT_IN_PCT);
