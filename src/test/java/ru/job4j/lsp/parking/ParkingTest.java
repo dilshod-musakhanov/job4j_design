@@ -1,10 +1,9 @@
 package ru.job4j.lsp.parking;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.Assert.*;
+
 
 @Disabled
 public class ParkingTest {
