@@ -14,7 +14,7 @@ public class ParkingTest {
         Vehicle lightVehicle = new LightVehicle("Spark", "AA111");
         baseParking.getParking(lightVehicle);
         Vehicle lightVehicle2 = new LightVehicle("Spark", "AA111");
-        assertThat(baseParking.notDuplicate(lightVehicle)).isEqualTo(false);
+        assertThat(baseParking.notDuplicate(lightVehicle2)).isEqualTo(false);
     }
 
     @Test
