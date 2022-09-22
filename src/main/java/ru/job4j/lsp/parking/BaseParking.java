@@ -7,8 +7,8 @@ public class BaseParking implements Parking {
 
     private int freeSpaceLightVehicle;
     private int freeSpaceHeavyVehicle;
-    private Set<LightVehicle> lightVehicles;
-    private Set<HeavyVehicle> heavyVehicles;
+    private Set<Vehicle> lightVehicles;
+    private Set<Vehicle> heavyVehicles;
 
     public BaseParking(int lightVehicle, int heavyVehicle) {
         this.freeSpaceLightVehicle = lightVehicle;
@@ -17,15 +17,18 @@ public class BaseParking implements Parking {
         this.heavyVehicles = new HashSet<>(heavyVehicle);
     }
 
-
     @Override
     public boolean getParking(Vehicle vehicle) {
         return true;
     }
 
     @Override
-    public Vehicle leaveParking(Vehicle vehicle) {
-        return vehicle;
+    public boolean leaveParking(Vehicle vehicle) {
+        return true;
+    }
+
+    public boolean notDuplicate(Vehicle vehicle) {
+        return true;
     }
 
 }
