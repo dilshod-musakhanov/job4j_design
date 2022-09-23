@@ -9,10 +9,10 @@ public class HeavyVehicle implements Vehicle {
     private int size;
 
     public HeavyVehicle(String name, String plateNumber, int size) {
+        validateHeavyVehicleSize(size);
         this.name = name;
         this.plateNumber = plateNumber;
         this.size = size;
-        validateHeavyVehicleSize(size);
     }
 
     public void setName(String name) {
