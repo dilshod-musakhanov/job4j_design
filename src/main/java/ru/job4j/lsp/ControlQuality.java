@@ -1,5 +1,7 @@
 package ru.job4j.lsp;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControlQuality {
@@ -27,6 +29,14 @@ public class ControlQuality {
                 }
             }
         }
+    }
+
+    public void resort() {
+        List<Food> temp = new ArrayList<>();
+        for (Store store : stores) {
+            temp.addAll(store.findAll());
+        }
+        checkAndDistributeListOfFood(temp);
     }
 
 }
