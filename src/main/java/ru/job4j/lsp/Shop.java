@@ -72,4 +72,8 @@ public class Shop implements Store {
         return result;
     }
 
+    @Override
+    public void clear() {
+        foodList.clear();
+    }
 }

@@ -35,6 +35,7 @@ public class ControlQuality {
         List<Food> temp = new ArrayList<>();
         for (Store store : stores) {
             temp.addAll(store.findAll());
+            store.clear();
         }
         checkAndDistributeListOfFood(temp);
     }

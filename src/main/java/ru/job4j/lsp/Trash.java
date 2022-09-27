@@ -53,4 +53,8 @@ public class Trash implements Store {
         return result;
     }
 
+    @Override
+    public void clear() {
+        foodList.clear();
+    }
 }

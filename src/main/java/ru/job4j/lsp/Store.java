@@ -10,6 +10,7 @@ public interface Store {
     List<Food> findAll();
     List<Food> findByNameAndReturnFoodList(String name);
     Food findByNameAndReturnFood(String name);
+    void clear();
 
     default int getPctTillFullExpire(Food food) {
         int expireFullPeriod = (int) ChronoUnit.DAYS.between(food.getCreatedDate(), food.getExpireDate());

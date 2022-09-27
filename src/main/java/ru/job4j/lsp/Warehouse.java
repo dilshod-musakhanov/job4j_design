@@ -53,4 +53,9 @@ public class Warehouse implements Store {
         return result;
     }
 
+    @Override
+    public void clear() {
+        foodList.clear();
+    }
+
 }
