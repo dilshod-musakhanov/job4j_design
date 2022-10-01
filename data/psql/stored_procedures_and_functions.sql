@@ -73,7 +73,7 @@ select f_update(5, 0, 3);
 
 select f_update_data(0, 0.2, 0);
 
-create or replace procedure delete_data_if_count_zero(d_count integer, tax float, d_id integer)
+create or replace procedure delete_data_if_count_zero(d_count integer)
 language 'plpgsql'
 as
 $$
@@ -81,34 +81,25 @@ $$
         if d_count = 0 THEN
             delete from products where count = d_count;
         end if;
-        if tax > 0 THEN
-            update products set price = price + price * tax;
-        end if;
     END;
 $$;
 
 select f_insert_data('phone', 'Nokia', 0, 500);
 
-call delete_data_if_count_zero(0, 0, 0);
+call delete_data_if_count_zero(0);
 
-create or replace function f_delete_data_if_count_zero(d_count integer, tax float, d_id integer)
-returns integer
+create or replace function f_delete_data_if_count_zero(d_count integer)
+returns void
 language 'plpgsql'
 as
 $$
-    declare
-        result integer;
     begin
         if d_count = 0 THEN
             delete from products where count = d_count;
         end if;
-        if tax > 0 THEN
-            update products set price = price + price * tax;
-        end if;
-        return result;
     end;
 $$;
 
 select f_insert_data('phone', 'Nokia', 0, 500);
 
-select f_delete_data_if_count_zero(0, 0, 0);
+select f_delete_data_if_count_zero(0);
